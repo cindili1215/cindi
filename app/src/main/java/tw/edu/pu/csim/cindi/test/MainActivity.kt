@@ -9,7 +9,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
+import com.example.myapplication.R
 import tw.edu.pu.csim.cindi.test.ui.theme.TestTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,25 +26,36 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Bigtext()
+                    Greeting("測試")
                 }
             }
         }
     }
+
+    private fun Greeting() {
+        TODO("Not yet implemented")
+    }
+}
+
+@Composable
+fun Bigtext(){
+    Text(text = "行動應用軟體開發",
+        fontSize = 30.sp,
+        color = Color.Blue
+
+    )
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello cindi!",
+        text = "$name",
+        fontFamily = FontFamily(Font(R.font.kai)),
+        fontSize = 25.sp,
+        color = Color.Blue,
         modifier = modifier
     )
+
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TestTheme {
-        Greeting("Android")
-    }
-}

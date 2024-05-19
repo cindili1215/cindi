@@ -6,4 +6,8 @@
     <style name="Theme.Exam" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="Theme.Test" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Test2" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.S11146902" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
