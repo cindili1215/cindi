@@ -22,6 +22,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -153,6 +154,8 @@ fun SecondScreen(navController: NavController) {
     var selected by remember { mutableStateOf<String?>("lovehome") } // 將 selected 設置為 "lovehome"
     val context = LocalContext.current
 
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -197,14 +200,33 @@ fun SecondScreen(navController: NavController) {
                             .fillMaxWidth()
                             .height(200.dp)
                             .pointerInput(Unit) {
+                                detectDragGesturesAfterLongPress(
+                                    onDrag = { change, dragAmount ->
+                                        // 當拖曳進行中時的操作
+                                    },
+                                    onDragStart = {
+                                        // 當拖曳開始時的操作
+                                    },
+                                    onDragEnd = {
+                                        // 當拖曳結束時的操作
+                                    }
+                                )
+                            }
+                            .pointerInput(Unit) {
                                 detectTapGestures(
                                     onLongPress = {
+                                        // 當長按時打開 Google 地圖
                                         val uri = Uri.parse("https://maps.google.com/?q=台中市南屯區東興路一段450號")
-                                        val mapIntent = Intent(Intent.ACTION_VIEW, uri)
-                                        mapIntent.setPackage("com.google.android.apps.maps")
+                                        val mapIntent = Intent(Intent.ACTION_VIEW, uri).apply {
+                                            setPackage("com.google.android.apps.maps")
+                                        }
+                                        //val context = LocalContext.current
                                         context.startActivity(mapIntent)
                                     }
                                 )
+
+
+
                             },
                         contentScale = ContentScale.Crop
                     )
